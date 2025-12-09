@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Eggs Machina</title>
+  <link rel="stylesheet" href="game.css">
+  <script src="../../assets/vendor/planck.min.js"></script>
+</head>
+<body>
+  <header class="hud">
+    <div class="left">
+      <h1 class="game-title">⚡ Thunderbird Eggs Machina 🎪</h1>
+      <button id="play">🚀 Start Journey</button>
+      <button id="pause">⏸️ Pause</button>
+      <button id="reset">🔄 Reset</button>
+      <button id="leaderboard">🏆 Leaderboard</button>
+      <button id="help">❓ Help</button>
+      <span id="engine" class="engine">Engine: <em>loading</em></span>
+    </div>
+    <div class="right save">
+      <button id="save1">💾 Save 1</button>
+      <button id="save2">💾 Save 2</button>
+      <button id="save3">💾 Save 3</button>
+      <button id="load1">📂 Load 1</button>
+      <button id="load2">📂 Load 2</button>
+      <button id="load3">📂 Load 3</button>
+    </div>
+  </header>
+
+  <aside class="toolbox" aria-label="Floating parts bin">
+    <div class="toolbox-section">
+      <h3>Interactive Parts</h3>
+      <div class="part" data-kind="ramp" title="Ramp" draggable="true">🛤️</div>
+      <div class="part" data-kind="plank" title="Plank" draggable="true">📏</div>
+      <div class="part" data-kind="wheel" title="Wheel" draggable="true">⚙️</div>
+      <div class="part" data-kind="hinge" title="Hinge" draggable="true">🔗</div>
+      <div class="part" data-kind="domino" title="Domino" draggable="true">🎲</div>
+    </div>
+    <div class="toolbox-section">
+      <h3>Static Objects</h3>
+      <div class="part" data-kind="wall" title="Wall" draggable="true">🧱</div>
+      <div class="part" data-kind="platform" title="Platform" draggable="true">🌱</div>
+      <div class="part" data-kind="block" title="Block" draggable="true">📦</div>
+      <div class="part" data-kind="spring" title="Spring" draggable="true">🦘</div>
+      <div class="part" data-kind="lever" title="Lever" draggable="true">⚖️</div>
+    </div>
+    <div class="toolbox-section">
+      <h3>Propulsion</h3>
+      <div class="part" data-kind="fan" title="Fan" draggable="true">🌀</div>
+      <div class="part" data-kind="pendulum" title="Pendulum" draggable="true">⏰</div>
+      <div class="part" data-kind="motor" title="Motor" draggable="true">🔋</div>
+      <div class="part" data-kind="tiltable" title="Tiltable Platform" draggable="true">🎚️</div>
+    </div>
+  </aside>
+
+  <canvas id="stage" width="1280" height="720" aria-label="Contraption canvas" tabindex="0"></canvas>
+
+  <!-- Leaderboard Modal -->
+  <div id="leaderboardModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🏆 Thunderbird Community Leaderboard</h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="leaderboard-tabs">
+          <button class="tab-button active" data-tab="distance">📏 Distance</button>
+          <button class="tab-button" data-tab="achievements">🏅 Achievements</button>
+          <button class="tab-button" data-tab="community">👥 Community</button>
+        </div>
+        <div id="distanceTab" class="tab-content active">
+          <h3>Furthest Journey Distance</h3>
+          <div id="distanceLeaderboard" class="leaderboard-list"></div>
+        </div>
+        <div id="achievementsTab" class="tab-content">
+          <h3>Thunderbird Achievements</h3>
+          <div id="achievementsList" class="achievements-grid"></div>
+        </div>
+        <div id="communityTab" class="tab-content">
+          <h3>Community Features</h3>
+          <div class="community-features">
+            <button id="shareContraption">📤 Share Your Contraption</button>
+            <button id="viewNewsletter">📧 Latest Thunderbird Newsletter</button>
+            <button id="viewStateOfThunder">⚡ State of Thunder</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Modal -->
+  <div id="helpModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>❓ How to Play Thunderbird Eggs Machina</h2>
+        <span class="close">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="help-section">
+          <h3>🎯 Goal</h3>
+          <p>Build a Rube Goldberg contraption to get your emoji-carrying egg to the goal! Every journey is celebrated, even "failures" reveal surprise emojis!</p>
+        </div>
+        
+        <div class="help-section">
+          <h3>🛠️ Building Tools</h3>
+          <div class="tool-grid">
+            <div class="tool-item">
+              <span class="tool-emoji">🛤️</span>
+              <div>
+                <strong>Ramps</strong><br>
+                <small>Drag to place, R to rotate</small>
+              </div>
+            </div>
+            <div class="tool-item">
+              <span class="tool-emoji">🧱</span>
+              <div>
+                <strong>Walls</strong><br>
+                <small>Block and redirect the egg</small>
+              </div>
+            </div>
+            <div class="tool-item">
+              <span class="tool-emoji">🌱</span>
+              <div>
+                <strong>Platforms</strong><br>
+                <small>Landing spots for the egg</small>
+              </div>
+            </div>
+            <div class="tool-item">
+              <span class="tool-emoji">🦘</span>
+              <div>
+                <strong>Springs</strong><br>
+                <small>Bounce the egg upward!</small>
+              </div>
+            </div>
+            <div class="tool-item">
+              <span class="tool-emoji">🌀</span>
+              <div>
+                <strong>Fans</strong><br>
+                <small>Push the egg with wind</small>
+              </div>
+            </div>
+            <div class="tool-item">
+              <span class="tool-emoji">⏰</span>
+              <div>
+                <strong>Pendulums</strong><br>
+                <small>Swinging momentum transfer</small>
+              </div>
+            </div>
+            <div class="tool-item">
+              <span class="tool-emoji">🔋</span>
+              <div>
+                <strong>Motors</strong><br>
+                <small>Continuous propulsion</small>
+              </div>
+            </div>
+            <div class="tool-item">
+              <span class="tool-emoji">🎚️</span>
+              <div>
+                <strong>Tiltable Platforms</strong><br>
+                <small>Use ← → arrows to tilt</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="help-section">
+          <h3>🎮 Controls</h3>
+          <ul>
+            <li><strong>Drag & Drop:</strong> Place parts from the toolbox</li>
+            <li><strong>Click:</strong> Select objects</li>
+            <li><strong>R Key:</strong> Rotate selected ramps</li>
+            <li><strong>Delete/Backspace:</strong> Remove selected objects</li>
+            <li><strong>← → Arrows:</strong> Tilt selected platforms</li>
+            <li><strong>Spacebar:</strong> Toggle fans and motors</li>
+            <li><strong>🚀 Start Journey:</strong> Launch the egg!</li>
+          </ul>
+        </div>
+        
+        <div class="help-section">
+          <h3>🏆 Thunderbird Features</h3>
+          <ul>
+            <li><strong>Achievements:</strong> Unlock Thunderbird-themed badges</li>
+            <li><strong>Leaderboard:</strong> Compete with the community</li>
+            <li><strong>Share:</strong> Share your contraptions</li>
+            <li><strong>Newsletter:</strong> Stay updated with Thunderbird</li>
+          </ul>
+        </div>
+        
+        <div class="help-section">
+          <h3>💡 Tips</h3>
+          <ul>
+            <li>Every egg carries a unique emoji - collect them all!</li>
+            <li>Even "failures" are celebrated with surprise emojis</li>
+            <li>Use springs and fans to create chain reactions</li>
+            <li>Platforms can be tilted to create rolling effects</li>
+            <li>Save your best contraptions to share later</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>

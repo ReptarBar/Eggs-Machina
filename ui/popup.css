@@ -1,0 +1,1 @@
+.popup { min-width: 320px; padding: 12px; font-family: system-ui, sans-serif; } .row { display: flex; gap: 8px; margin: 8px 0; } .slots { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; } button { padding: 6px 10px; }

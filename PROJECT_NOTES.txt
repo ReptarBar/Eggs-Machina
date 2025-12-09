@@ -1,0 +1,36 @@
+EGGS MACHINA — PROJECT NOTES (slice 3r3)
+=======================================
+
+VISION
+Sandbox-first Rube Goldberg builder with a prize-egg theme. Core fun is building contraptions and enjoying both success and delightful failure.
+
+COMPLETED STEPS (to date)
+- UX: Hybrid popup + full-page sandbox; floating toolbox layout
+- Visuals: Canvas grid background; simple icons
+- Storage: 3 save slots via browser.storage.local
+- Manifests: MV2 and MV3 with Gecko ID eggs-machina@mellis.thunderbird.net
+- Engine: Adapter layer that prefers Planck.js when present, falls back to local physics
+- Editor: drag-drop from toolbox, grid snap, selection, rotate (R), delete
+- Gameplay: egg spawn, goal sensor sparkle, basic fail crack gag
+- Packaging: PNG-only assets, no network calls
+
+REMAINING STEPS (MVP)
+1) Replace local fallback with full Planck.js simulation by default
+   - Proper rigid bodies for planks and wheels
+   - Joints: revolute (hinge), distance (rope), motorized wheel
+2) Editor improvements
+   - Rotate with on-canvas gizmo; drag endpoints
+   - Snap angle guides; undo/redo; autosave
+3) Win/Fail polish
+   - Prize egg open + confetti; collectible fail reels
+4) Options & persistence
+   - Persist background choice; toggle grid; sound volume
+5) A11y & i18n
+   - Keyboard shortcuts doc; ARIA for toolbox; strings module for localization
+6) QA & Performance
+   - 100+ bodies test; deterministic replay; unit tests for serializer
+
+NOTES FOR THUNDERBIRD
+- Use MV2 if MV3 service worker behavior is problematic in early builds
+- Game opens in a content tab; PWAs aren’t installed apps in Thunderbird
+- No extra permissions beyond "storage" needed

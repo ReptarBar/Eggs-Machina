@@ -1,0 +1,50 @@
+EGGS MACHINA — QA TEST CHECKLIST (slice 3r3)
+===========================================
+
+ENV SETUP
+- [ ] Copy desired manifest to manifest.json (MV3 or MV2)
+- [ ] Load temp add-on (Firefox web-ext OR Thunderbird Debug Add-ons)
+- [ ] Confirm toolbar icon visible
+- [ ] Open popup → click "Open Garage" → game page opens
+
+ENGINE INDICATOR
+- [ ] HUD shows Engine: local
+- [ ] (Optional) Place planck.min.js in assets/vendor/
+- [ ] Reload, HUD shows Engine: planck
+
+EDITOR: TOOLBOX & PLACEMENT
+- [ ] Drag "ramp" from floating toolbox into canvas
+- [ ] Drop snaps to 32px grid
+- [ ] Click ramp → selection outline appears
+- [ ] Press R → ramp rotates ~15° (repeat rotates further)
+- [ ] Press Delete → ramp is removed
+- [ ] Place 2–3 ramps to form a path
+
+GAMEPLAY
+- [ ] Click Play → egg spawns at top-left and falls
+- [ ] Egg rolls on placed ramps (collisions visible)
+- [ ] Pause stops motion; Reset clears egg but keeps parts
+- [ ] Success: roll egg into green goal (bottom-right) → sparkle appears
+- [ ] Failure: allow egg to fall below floor → crack gag appears
+
+SAVE / LOAD
+- [ ] Click Save 1 → no error
+- [ ] Remove all parts, click Load 1 → parts reappear
+- [ ] Repeat with Save/Load 2 and 3
+
+A11Y / UX
+- [ ] Canvas gains focus when clicked (keyboard R/Delete work)
+- [ ] Alt text present for toolbox icons
+- [ ] Buttons have labels and visible focus
+
+PERMISSIONS
+- [ ] Only "storage" permission requested
+
+PERFORMANCE SMOKE
+- [ ] Place 10+ ramps, run at 60fps on typical laptop
+- [ ] Try rotate/delete while paused and running
+
+KNOWN LIMITS (slice 3r3)
+- Local engine uses simplified collisions; joints/motors are stubs
+- Undo/redo not implemented yet
+- No audio yet

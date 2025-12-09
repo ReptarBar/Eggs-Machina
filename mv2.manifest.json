@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Eggs Machina",
+  "version": "0.3.2",
+  "description": "Sandbox Rube Goldberg builder with a prize egg goal.",
+  "applications": {
+    "gecko": {
+      "id": "eggs-machina@mellis.thunderbird.net"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon-16.png",
+    "32": "assets/icons/icon-32.png",
+    "48": "assets/icons/icon-48.png",
+    "96": "assets/icons/icon-96.png",
+    "128": "assets/icons/icon-128.png"
+  },
+  "browser_action": {
+    "default_title": "Eggs Machina",
+    "default_popup": "src/ui/popup.html"
+  },
+  "options_ui": {
+    "page": "src/ui/options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "scripts": [
+      "src/background/background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "storage"
+  ]
+}

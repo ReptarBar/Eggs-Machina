@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with gradient -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F7931E;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="eggGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF8DC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F5DEB3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DEB887;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="rampGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="springGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="128" cy="128" r="120" fill="url(#bgGradient)" stroke="#2C3E50" stroke-width="4"/>
+  
+  <!-- Rube Goldberg elements in background -->
+  <!-- Ramp (left side) -->
+  <path d="M 40 180 L 100 140 L 120 150 L 80 190 Z" fill="url(#rampGradient)" stroke="#2C3E50" stroke-width="2"/>
+  
+  <!-- Spring (bottom right) -->
+  <path d="M 180 200 Q 190 190 200 200 Q 190 210 200 220 Q 190 230 200 240" 
+        fill="none" stroke="url(#springGradient)" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Gear (top right) -->
+  <g transform="translate(200, 80)">
+    <circle cx="0" cy="0" r="20" fill="#4A90E2" stroke="#2C3E50" stroke-width="2"/>
+    <circle cx="0" cy="0" r="8" fill="#2C3E50"/>
+    <!-- Gear teeth -->
+    <rect x="-2" y="-25" width="4" height="8" fill="#4A90E2"/>
+    <rect x="-2" y="17" width="4" height="8" fill="#4A90E2"/>
+    <rect x="-25" y="-2" width="8" height="4" fill="#4A90E2"/>
+    <rect x="17" y="-2" width="8" height="4" fill="#4A90E2"/>
+  </g>
+  
+  <!-- Domino (left side) -->
+  <rect x="30" y="160" width="8" height="20" fill="#8B4513" stroke="#2C3E50" stroke-width="1"/>
+  
+  <!-- Main egg character -->
+  <ellipse cx="128" cy="140" rx="35" ry="45" fill="url(#eggGradient)" stroke="#2C3E50" stroke-width="3"/>
+  
+  <!-- Egg face -->
+  <circle cx="120" cy="125" r="4" fill="#2C3E50"/>
+  <circle cx="136" cy="125" r="4" fill="#2C3E50"/>
+  <path d="M 120 140 Q 128 150 136 140" fill="none" stroke="#2C3E50" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Egg carrying emoji (random) -->
+  <text x="128" y="100" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#FF6B35">🥚</text>
+  
+  <!-- Motion lines behind egg -->
+  <path d="M 80 120 Q 90 110 100 120" fill="none" stroke="#FFD700" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 85 130 Q 95 120 105 130" fill="none" stroke="#FFD700" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  
+  <!-- Thunderbird lightning bolt -->
+  <path d="M 60 60 L 70 80 L 65 80 L 75 100 L 65 100 L 55 80 L 60 80 Z" fill="#FFD700" stroke="#2C3E50" stroke-width="1"/>
+  
+  <!-- Sparkles/confetti -->
+  <g fill="#FFD700" opacity="0.8">
+    <circle cx="50" cy="50" r="2"/>
+    <circle cx="200" cy="60" r="1.5"/>
+    <circle cx="70" cy="220" r="2.5"/>
+    <circle cx="220" cy="200" r="1"/>
+  </g>
+  
+  <!-- Title text (small) -->
+  <text x="128" y="220" font-family="Arial, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#2C3E50">EGGS MACHINA</text>
+</svg>
